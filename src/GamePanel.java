@@ -1,5 +1,8 @@
+import gfx.ImageLoader;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class GamePanel implements Runnable {
     private Display display;
@@ -13,10 +16,13 @@ public class GamePanel implements Runnable {
     private BufferStrategy Bstrategy;
     private Graphics graphics;
 
+    private BufferedImage bi;
+
 
 
     private void init(){
         display=new Display(TITLE,WIDTH,HEIGHT);
+        bi= ImageLoader.loadImage("/res/natsu_spread_sheet.png");
     }
 
     private void tick(){
@@ -30,10 +36,8 @@ public class GamePanel implements Runnable {
             return;
         }
         graphics=Bstrategy.getDrawGraphics();
-        graphics.setColor(Color.red);
-        graphics.drawRect(-10,70,70,90);
-        graphics.setColor(Color.green);
-        graphics.fillRect(80,90,50,70);
+        graphics.clearRect(0,0,WIDTH,HEIGHT);
+        graphics.drawImage(bi,0,0,null);
         Bstrategy.show();
         graphics.dispose();
     }
