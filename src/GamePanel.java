@@ -1,3 +1,4 @@
+import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
@@ -17,16 +18,12 @@ public class GamePanel implements Runnable {
     private BufferStrategy Bstrategy;
     private Graphics graphics;
 
-    private BufferedImage bi;
-    private SpriteSheet sheet;
 
 
 
     private void init(){
         display=new Display(TITLE,WIDTH,HEIGHT);
-
-        bi= ImageLoader.loadImage("/res/space_invader_sprites1.png");
-        sheet=new SpriteSheet(bi);
+        Assets.init();
     }
 
     private void tick(){
@@ -43,7 +40,9 @@ public class GamePanel implements Runnable {
         graphics.clearRect(0,0,WIDTH,HEIGHT);
         graphics.fillRect(0,0,WIDTH,HEIGHT);
         graphics.setColor(Color.black);
-        graphics.drawImage(sheet.crop(0,0,145,110),0,0,null);
+        graphics.drawImage(Assets.greenAlien,0,0,null);
+        graphics.drawImage(Assets.greenAlien,130,0,null);
+        graphics.drawImage(Assets.yellowAlien,0,130,null);
         Bstrategy.show();
         graphics.dispose();
     }
