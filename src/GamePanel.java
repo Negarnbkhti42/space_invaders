@@ -30,7 +30,10 @@ public class GamePanel implements Runnable {
             return;
         }
         graphics=Bstrategy.getDrawGraphics();
-        graphics.fillRect(0,0,WIDTH,HEIGHT);
+        graphics.setColor(Color.red);
+        graphics.drawRect(-10,70,70,90);
+        graphics.setColor(Color.green);
+        graphics.fillRect(80,90,50,70);
         Bstrategy.show();
         graphics.dispose();
     }
