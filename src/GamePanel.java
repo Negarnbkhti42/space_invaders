@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 public class GamePanel implements Runnable {
     private Display display;
@@ -9,12 +10,13 @@ public class GamePanel implements Runnable {
     private Thread thread;
     private boolean running=false;
 
-    public GamePanel(){
-        display=new Display(TITLE,WIDTH,HEIGHT);
-    }
+    private BufferStrategy Bstrategy;
+    private Graphics graphics;
+
+
 
     private void init(){
-
+        display=new Display(TITLE,WIDTH,HEIGHT);
     }
 
     private void tick(){
@@ -22,15 +24,25 @@ public class GamePanel implements Runnable {
     }
 
     private void render(){
-
+        Bstrategy =display.getCanvas().getBufferStrategy();
+        if (Bstrategy==null){
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
+        graphics=Bstrategy.getDrawGraphics();
+        graphics.fillRect(0,0,WIDTH,HEIGHT);
+        Bstrategy.show();
+        graphics.dispose();
     }
 
     @Override
     public void run() {
+        init();
         while (running){
             tick();
             render();
         }
+        stop();
     }
 
     public synchronized void start(){
