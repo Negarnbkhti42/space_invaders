@@ -41,8 +41,8 @@ public class GamePanel implements Runnable {
         graphics.fillRect(0,0,WIDTH,HEIGHT);
         graphics.setColor(Color.black);
         graphics.drawImage(Assets.greenAlien,0,0,null);
-        graphics.drawImage(Assets.greenAlien,130,0,null);
-        graphics.drawImage(Assets.yellowAlien,0,130,null);
+        graphics.drawImage(Assets.greenAlien_2,130,0,null);
+        graphics.drawImage(Assets.gBullet,0,70,null);
         Bstrategy.show();
         graphics.dispose();
     }
