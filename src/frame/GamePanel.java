@@ -1,22 +1,18 @@
 package frame;
 
-import frame.Display;
 import gfx.Assets;
 import input.KeyManager;
 import state.GameState;
 import state.MenuState;
 import state.State;
-import sun.awt.WindowIDProvider;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class GamePanel implements Runnable {
-    private Display display;
-
     private static final String TITLE = "Space invaders";
     private static final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
-
+    private Display display;
     private Thread thread;
     private boolean running = false;
 
@@ -26,22 +22,29 @@ public class GamePanel implements Runnable {
     private State gameState;
     private State menuState;
 
-    private KeyManager keyManager=new KeyManager();
+    private final KeyManager keyManager = new KeyManager();
 
+    public static int getPanelWidth() {
+        return PANEL_WIDTH;
+    }
+
+    public static int getPanelHeight() {
+        return PANEL_HEIGHT;
+    }
 
     private void init() {
         display = new Display(TITLE, PANEL_WIDTH, PANEL_HEIGHT);
         display.getFrame().addKeyListener(keyManager);
         Assets.init();
 
-        gameState= new GameState(this);
-        menuState=new MenuState(this);
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
         State.setState(gameState);
     }
 
     private void tick() {
         keyManager.tick();
-        if (State.getCurrentState()!=null){
+        if (State.getCurrentState() != null) {
             State.getCurrentState().tick();
         }
     }
@@ -54,9 +57,9 @@ public class GamePanel implements Runnable {
         }
         graphics = Bstrategy.getDrawGraphics();
         graphics.clearRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-        graphics.fillRect(0,0, PANEL_WIDTH,PANEL_HEIGHT);
+        graphics.fillRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         graphics.setColor(Color.BLACK);
-        if (State.getCurrentState()!=null){
+        if (State.getCurrentState() != null) {
             State.getCurrentState().render(graphics);
         }
         Bstrategy.show();
@@ -71,11 +74,11 @@ public class GamePanel implements Runnable {
         double timeForTick = 1000000000 / fps;
         long lastTime = System.nanoTime();
         long now;
-        double delta=0;
+        double delta = 0;
         while (running) {
             now = System.nanoTime();
-            delta += (now -lastTime) / timeForTick;
-            lastTime=now;
+            delta += (now - lastTime) / timeForTick;
+            lastTime = now;
 
             if (delta >= 1) {
                 tick();
@@ -103,14 +106,6 @@ public class GamePanel implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static int getPanelWidth() {
-        return PANEL_WIDTH;
-    }
-
-    public static int getPanelHeight() {
-        return PANEL_HEIGHT;
     }
 
     public KeyManager getKeyManager() {

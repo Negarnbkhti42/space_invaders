@@ -1,21 +1,21 @@
 package input;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener {
 
-    private boolean[] keys;
-    public boolean right,left,space;
+    public boolean right, left, space;
+    private final boolean[] keys;
 
-    public KeyManager(){
-        keys=new boolean[256];
+    public KeyManager() {
+        keys = new boolean[256];
     }
 
-    public void tick(){
-        right=keys[KeyEvent.VK_RIGHT];
-        left=keys[KeyEvent.VK_LEFT];
+    public void tick() {
+        right = keys[KeyEvent.VK_RIGHT];
+        left = keys[KeyEvent.VK_LEFT];
+        space=keys[KeyEvent.VK_SPACE];
     }
 
     @Override
@@ -25,11 +25,11 @@ public class KeyManager implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        keys[e.getKeyCode()]=true;
+        keys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        keys[e.getKeyCode()]=false;
+        keys[e.getKeyCode()] = false;
     }
 }
