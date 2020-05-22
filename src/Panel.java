@@ -1,5 +1,6 @@
 import gfx.Assets;
 import state.GameState;
+import state.MenuState;
 import state.State;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class Panel implements Runnable {
     private Graphics graphics;
 
     private State gameState;
+    private State menuState;
 
 
     private void init() {
@@ -25,6 +27,7 @@ public class Panel implements Runnable {
         Assets.init();
 
         gameState= new GameState();
+        menuState=new MenuState();
         State.setState(gameState);
     }
 

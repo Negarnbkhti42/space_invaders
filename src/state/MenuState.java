@@ -2,7 +2,7 @@ package state;
 
 import java.awt.*;
 
-public class mainState extends State {
+public class MenuState extends State {
 
     @Override
     public void tick() {
