@@ -1,3 +1,5 @@
+package frame;
+
 import com.sun.javafx.robot.impl.FXRobotHelper;
 
 import javax.swing.*;

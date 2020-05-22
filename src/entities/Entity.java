@@ -1,6 +1,17 @@
 package entities;
 
-public class Entity {
+import java.awt.*;
 
-    private int xPosition,yPosition;
+public abstract class Entity {
+
+    protected float xPosition,yPosition;
+
+    public Entity(float xPosition,float yPosition){
+        this.xPosition=xPosition;
+        this.yPosition=yPosition;
+    }
+
+    public abstract void tick();
+
+    public abstract void render(Graphics g);
 }

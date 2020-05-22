@@ -1,7 +1,11 @@
+package frame;
+
+import frame.Display;
 import gfx.Assets;
 import state.GameState;
 import state.MenuState;
 import state.State;
+import sun.awt.WindowIDProvider;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -45,7 +49,8 @@ public class Panel implements Runnable {
         }
         graphics = Bstrategy.getDrawGraphics();
         graphics.clearRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-
+        graphics.fillRect(0,0, PANEL_WIDTH,PANEL_HEIGHT);
+        graphics.setColor(Color.BLACK);
         if (State.getCurrentState()!=null){
             State.getCurrentState().render(graphics);
         }

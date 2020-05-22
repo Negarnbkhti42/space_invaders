@@ -1,6 +1,11 @@
 package entities;
 
-public class Creature extends Entity{
+public abstract class Creature extends Entity{
 
-    private boolean health;
+    protected int health;
+
+    public Creature(float xPosition, float yPosition) {
+        super(xPosition, yPosition);
+        health=1;
+    }
 }

@@ -1,3 +1,5 @@
+import frame.Panel;
+
 public class Main{
 
 
