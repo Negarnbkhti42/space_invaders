@@ -15,7 +15,7 @@ public class GamePanel implements Runnable {
     private Display display;
 
     private static final String TITLE = "Space invaders";
-    private static final int PANEL_WIDTH = 1450, PANEL_HEIGHT = 1000;
+    private static final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
 
     private Thread thread;
     private boolean running = false;

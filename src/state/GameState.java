@@ -1,6 +1,7 @@
 package state;
 
 import entities.Alien;
+import entities.Creature;
 import entities.Player;
 import frame.GamePanel;
 
@@ -13,7 +14,8 @@ public class GameState extends State {
 
     public GameState(GamePanel game){
         super(game);
-        player=new Player(game,(GamePanel.getPanelWidth()/2)-65,870);
+        player=new Player(game,(GamePanel.getPanelWidth()- Creature.getDefaultCreatureWidth())/2,
+                GamePanel.getPanelHeight()-Creature.getDefaultCreatureHeight()-30);
         greenAlien=new Alien(0,0);
     }
 

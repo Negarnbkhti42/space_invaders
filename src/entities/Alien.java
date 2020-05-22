@@ -11,7 +11,7 @@ public class Alien extends Creature {
     private BufferedImage texture= Assets.greenAlien;
 
     public Alien(float xPosition, float yPosition) {
-        super(xPosition, yPosition);
+        super(xPosition, yPosition,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGHT);
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Alien extends Creature {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(texture,(int)xPosition,(int) yPosition,null);
+        g.drawImage(texture,(int)xPosition,(int) yPosition,width,height,null);
     }
 }
