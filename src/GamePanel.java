@@ -1,5 +1,6 @@
 import gfx.Assets;
 
+import javax.print.attribute.standard.NumberUp;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -7,7 +8,7 @@ public class GamePanel implements Runnable {
     private Display display;
 
     private static final String TITLE = "Space invaders";
-    private static final int WIDTH = 800, HEIGHT = 600;
+    private static final int WIDTH = 1450, HEIGHT = 1000;
 
     private Thread thread;
     private boolean running = false;
@@ -41,7 +42,8 @@ public class GamePanel implements Runnable {
         graphics.setColor(Color.black);
         graphics.drawImage(Assets.greenAlien, x, 0, null);
         graphics.drawImage(Assets.greenAlien_2, x + 130, 0, null);
-        graphics.drawImage(Assets.gBullet, x, 70, null);
+        graphics.drawImage(Assets.greenBullet, x, 70, null);
+        graphics.drawImage(Assets.spaceShip,(WIDTH/2)-65,HEIGHT-130, null);
         Bstrategy.show();
         graphics.dispose();
     }
@@ -51,25 +53,19 @@ public class GamePanel implements Runnable {
         init();
 
         int fps = 2;
-        long timeForTick = 1000000000 / 2;
+        double timeForTick = 1000000000 / fps;
         long lastTime = System.nanoTime();
         long now;
-        long delta = 0;
-        long tick=0,timer;
+        double delta=0;
         while (running) {
             now = System.nanoTime();
             delta += (now -lastTime) / timeForTick;
-            timer=now-lastTime;
             lastTime=now;
 
             if (delta >= 1) {
                 tick();
                 render();
-                tick++;
                 delta--;
-            }
-            if (timer>=1000000000){
-                System.out.println(tick);
             }
         }
         stop();
