@@ -2,20 +2,18 @@ package state;
 
 import entities.Alien;
 import entities.Player;
-import frame.Panel;
-import gfx.Assets;
-import javafx.scene.layout.Pane;
+import frame.GamePanel;
 
 import java.awt.*;
-import java.sql.ParameterMetaData;
 
 public class GameState extends State {
 
     private Player player;
     private Alien greenAlien;
 
-    public GameState(){
-        player=new Player((Panel.getPanelWidth()/2)-65,870);
+    public GameState(GamePanel game){
+        super(game);
+        player=new Player(game,(GamePanel.getPanelWidth()/2)-65,870);
         greenAlien=new Alien(0,0);
     }
 

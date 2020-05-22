@@ -1,10 +1,10 @@
-import frame.Panel;
+import frame.GamePanel;
 
 public class Main{
 
 
     public static void main(String[] args) {
-       Panel game= new Panel();
+       GamePanel game= new GamePanel();
        game.start();
     }
 

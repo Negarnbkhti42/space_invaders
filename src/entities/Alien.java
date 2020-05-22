@@ -1,6 +1,6 @@
 package entities;
 
-import frame.Panel;
+import frame.GamePanel;
 import gfx.Assets;
 
 import java.awt.*;
@@ -16,9 +16,6 @@ public class Alien extends Creature {
 
     @Override
     public void tick() {
-        if (xPosition< Panel.getPanelWidth()-130){
-            xPosition+=20;
-        }
     }
 
     @Override

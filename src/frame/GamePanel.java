@@ -2,6 +2,7 @@ package frame;
 
 import frame.Display;
 import gfx.Assets;
+import input.KeyManager;
 import state.GameState;
 import state.MenuState;
 import state.State;
@@ -10,7 +11,7 @@ import sun.awt.WindowIDProvider;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Panel implements Runnable {
+public class GamePanel implements Runnable {
     private Display display;
 
     private static final String TITLE = "Space invaders";
@@ -25,17 +26,21 @@ public class Panel implements Runnable {
     private State gameState;
     private State menuState;
 
+    private KeyManager keyManager=new KeyManager();
+
 
     private void init() {
         display = new Display(TITLE, PANEL_WIDTH, PANEL_HEIGHT);
+        display.getFrame().addKeyListener(keyManager);
         Assets.init();
 
-        gameState= new GameState();
-        menuState=new MenuState();
+        gameState= new GameState(this);
+        menuState=new MenuState(this);
         State.setState(gameState);
     }
 
     private void tick() {
+        keyManager.tick();
         if (State.getCurrentState()!=null){
             State.getCurrentState().tick();
         }
@@ -62,7 +67,7 @@ public class Panel implements Runnable {
     public void run() {
         init();
 
-        int fps = 3;
+        int fps = 60;
         double timeForTick = 1000000000 / fps;
         long lastTime = System.nanoTime();
         long now;
@@ -106,5 +111,9 @@ public class Panel implements Runnable {
 
     public static int getPanelHeight() {
         return PANEL_HEIGHT;
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 }
