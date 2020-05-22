@@ -10,6 +10,7 @@ import java.time.Year;
 
 public class Assets {
 
+
     private static final int WIDTH=130,HEIGHT=130;
     public static BufferedImage greenAlien,purpleAlien,pinkAlien,blueAlien,redAlien,yellowAlien;
     public static BufferedImage greenAlien_2,purpleAlien_2,pinkAlien_2,blueAlien_2,redAlien_2,yellowAlien_2;

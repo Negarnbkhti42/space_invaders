@@ -1,11 +1,8 @@
-import javax.swing.*;
-import java.awt.*;
-
 public class Main{
 
 
     public static void main(String[] args) {
-       GamePanel game= new GamePanel();
+       Panel game= new Panel();
        game.start();
     }
 
