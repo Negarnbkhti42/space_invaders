@@ -2,33 +2,31 @@ package state;
 
 import entities.*;
 import frame.GamePanel;
+import frame.Handler;
 import gfx.Assets;
 
 import java.awt.*;
 
 public class GameState extends State {
 
-    private final Player player;
-    private AlienPack alienPack;
     private final int x = 0;
+    private EntityManager manager;
 
-    public GameState(GamePanel game) {
-        super(game);
-        player = new Player(game, (GamePanel.getPanelWidth() - Creature.getDefaultCreatureWidth()) / 2,
-                GamePanel.getPanelHeight() - Creature.getDefaultCreatureHeight() - 30);
-        alienPack=new AlienPack();
+    public GameState(Handler handler) {
+        super(handler);
+        manager=new EntityManager(handler,new Player(handler,GamePanel.getPanelWidth()/2,
+                GamePanel.getPanelHeight()-Creature.getDefaultCreatureHeight()));
     }
 
     @Override
     public void tick() {
-        player.tick();
-        alienPack.tick();
+        manager.tick();
     }
 
     @Override
     public void render(Graphics graphic) {
         graphic.drawImage(Assets.background,0,0,GamePanel.getPanelWidth(),GamePanel.getPanelHeight(),null);
-        player.render(graphic);
-        alienPack.render(graphic);
+        manager.render(graphic);
     }
+
 }

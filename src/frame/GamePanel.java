@@ -23,6 +23,7 @@ public class GamePanel implements Runnable {
     private State menuState;
 
     private final KeyManager keyManager = new KeyManager();
+    private Handler handler;
 
     public static int getPanelWidth() {
         return PANEL_WIDTH;
@@ -37,9 +38,13 @@ public class GamePanel implements Runnable {
         display.getFrame().addKeyListener(keyManager);
         Assets.init();
 
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
+        handler=new Handler(this);
+
+        gameState = new GameState(handler);
+        menuState = new MenuState(handler);
         State.setState(gameState);
+
+
     }
 
     private void tick() {

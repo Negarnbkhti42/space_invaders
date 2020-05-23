@@ -1,6 +1,7 @@
 package entities;
 
 import frame.GamePanel;
+import frame.Handler;
 
 public abstract class Creature extends Entity {
 
@@ -12,10 +13,10 @@ public abstract class Creature extends Entity {
     protected int health;
     protected float speed;
 
-    protected float xMove = 0, yMove = 0;
 
-    public Creature(float xPosition, float yPosition, int width, int height) {
-        super(xPosition, yPosition, width, height);
+
+    public Creature(Handler handler,float xPosition, float yPosition, int width, int height) {
+        super(handler,xPosition, yPosition, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_CREATURE_SPEED;
     }
@@ -37,4 +38,5 @@ public abstract class Creature extends Entity {
     public float getSpeed() {
         return speed;
     }
+
 }

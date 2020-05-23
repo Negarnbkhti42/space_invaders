@@ -1,6 +1,7 @@
 package entities;
 
 import frame.GamePanel;
+import frame.Handler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,17 +11,28 @@ public abstract class Entity {
     protected float xPosition, yPosition;
     protected int width, height;
     protected BufferedImage texture;
+    protected Rectangle boundary=new Rectangle();
+    protected Handler handler;
 
-    public Entity(float xPosition, float yPosition, int width, int height) {
+    protected float xMove = 0, yMove = 0;
+
+    public Entity(Handler handler,float xPosition, float yPosition, int width, int height) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.width = width;
         this.height = height;
+        this.handler=handler;
     }
 
     public abstract void tick();
 
     public abstract void render(Graphics g);
+
+
+
+    public Rectangle getBounds(float xOffset,float yOffset){
+        return new Rectangle(((int)(xPosition+boundary.x+xOffset)),((int)(yPosition+boundary.y+yOffset)),boundary.width,boundary.height);
+    }
 
     public float getxPosition() {
         return xPosition;
@@ -52,5 +64,13 @@ public abstract class Entity {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public float getxMove() {
+        return xMove;
+    }
+
+    public float getyMove() {
+        return yMove;
     }
 }

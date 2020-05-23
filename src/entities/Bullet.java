@@ -1,10 +1,13 @@
 package entities;
 
+import frame.Handler;
+
+import javax.print.attribute.HashAttributeSet;
 import java.awt.*;
 
 public class Bullet extends Item {
-    public Bullet(float xPosition, float yPosition) {
-        super(xPosition, yPosition, Item.DEFAULT_ITEM_WIDTH, Item.DEFAULT_ITEM_HEIGHT);
+    public Bullet(Handler handler,float xPosition, float yPosition) {
+        super(handler,xPosition, yPosition, Item.DEFAULT_ITEM_WIDTH, Item.DEFAULT_ITEM_HEIGHT);
     }
 
     @Override

@@ -1,16 +1,17 @@
 package state;
 
 import frame.GamePanel;
+import frame.Handler;
 
 import java.awt.*;
 
 public abstract class State {
 
     private static State currentState = null;
-    protected GamePanel game;
+    protected Handler handler;
 
-    public State(GamePanel game) {
-        this.game = game;
+    public State(Handler handler) {
+        this.handler = handler;
     }
 
     public static void setState(State state) {

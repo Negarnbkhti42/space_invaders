@@ -1,5 +1,7 @@
 package entities;
 
+import frame.Handler;
+
 import java.awt.*;
 
 public abstract class Item extends Entity {
@@ -9,8 +11,8 @@ public abstract class Item extends Entity {
     public static final int DEFAULT_ITEM_WIDTH = 35,
             DEFAULT_ITEM_HEIGHT = 35;
 
-    public Item(float xPosition, float yPosition, int width, int height) {
-        super(xPosition, yPosition, width, height);
+    public Item(Handler handler,float xPosition, float yPosition, int width, int height) {
+        super(handler,xPosition, yPosition, width, height);
     }
 
 
