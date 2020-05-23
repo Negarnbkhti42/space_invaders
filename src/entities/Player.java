@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
 
-    private BufferedImage texture;
 
     private final GamePanel game;
     private Laser laser;

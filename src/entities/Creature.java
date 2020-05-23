@@ -5,7 +5,7 @@ import frame.GamePanel;
 public abstract class Creature extends Entity {
 
     protected static final int DEFAULT_HEALTH = 1;
-    protected static final float DEFAULT_CREATURE_SPEED = 2.0f;
+    protected static final float DEFAULT_CREATURE_SPEED = 2.5f;
     protected static final int DEFAULT_CREATURE_WIDTH = 50,
             DEFAULT_CREATURE_HEIGHT = 50;
 

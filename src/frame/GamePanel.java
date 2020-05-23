@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 
 public class GamePanel implements Runnable {
     private static final String TITLE = "Space invaders";
-    private static final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
+    private static final int PANEL_WIDTH = 1000, PANEL_HEIGHT = 800;
     private Display display;
     private Thread thread;
     private boolean running = false;
@@ -57,8 +57,6 @@ public class GamePanel implements Runnable {
         }
         graphics = Bstrategy.getDrawGraphics();
         graphics.clearRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-        graphics.fillRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-        graphics.setColor(Color.BLACK);
         if (State.getCurrentState() != null) {
             State.getCurrentState().render(graphics);
         }

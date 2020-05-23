@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 public class Laser extends Item{
 
-    private BufferedImage texture=Assets.laser;
     private final GamePanel game;
     private static Laser laser=null;
     private boolean shot=false;
@@ -17,6 +16,7 @@ public class Laser extends Item{
         super(xPosition, yPosition, DEFAULT_ITEM_WIDTH, DEFAULT_ITEM_HEIGHT);
         this.speed=5.0f;
         this.game=game;
+        this.texture=Assets.laser;
     }
 
     @Override

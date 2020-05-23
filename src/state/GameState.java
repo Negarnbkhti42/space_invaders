@@ -1,17 +1,15 @@
 package state;
 
-import entities.Alien;
-import entities.Creature;
-import entities.Laser;
-import entities.Player;
+import entities.*;
 import frame.GamePanel;
+import gfx.Assets;
 
 import java.awt.*;
 
 public class GameState extends State {
 
     private final Player player;
-    private Alien greenAlien;
+    private AlienPack alienPack;
     private Laser laser;
     private final int x = 0;
 
@@ -19,21 +17,22 @@ public class GameState extends State {
         super(game);
         player = new Player(game, (GamePanel.getPanelWidth() - Creature.getDefaultCreatureWidth()) / 2,
                 GamePanel.getPanelHeight() - Creature.getDefaultCreatureHeight() - 30);
-        greenAlien = new Alien(0, 0);
+        alienPack=new AlienPack();
         laser=Laser.getLaser(game);
     }
 
     @Override
     public void tick() {
         player.tick();
-        greenAlien.tick();
+        alienPack.tick();
         laser.tick();
     }
 
     @Override
     public void render(Graphics graphic) {
+        graphic.drawImage(Assets.background,0,0,GamePanel.getPanelWidth(),GamePanel.getPanelHeight(),null);
         player.render(graphic);
-        greenAlien.render(graphic);
+        alienPack.render(graphic);
         laser.render(graphic);
     }
 }

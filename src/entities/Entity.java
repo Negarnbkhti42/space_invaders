@@ -1,11 +1,15 @@
 package entities;
 
+import frame.GamePanel;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Entity {
 
     protected float xPosition, yPosition;
     protected int width, height;
+    protected BufferedImage texture;
 
     public Entity(float xPosition, float yPosition, int width, int height) {
         this.xPosition = xPosition;
