@@ -14,7 +14,7 @@ public class Laser extends Item{
 
     public Laser(GamePanel game,float xPosition, float yPosition) {
         super(xPosition, yPosition, DEFAULT_ITEM_WIDTH, DEFAULT_ITEM_HEIGHT);
-        this.speed=5.0f;
+        this.speed=15.0f;
         this.game=game;
         this.texture=Assets.laser;
     }

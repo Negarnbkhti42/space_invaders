@@ -6,8 +6,8 @@ public abstract class Creature extends Entity {
 
     protected static final int DEFAULT_HEALTH = 1;
     protected static final float DEFAULT_CREATURE_SPEED = 2.5f;
-    protected static final int DEFAULT_CREATURE_WIDTH = 50,
-            DEFAULT_CREATURE_HEIGHT = 50;
+    protected static final int DEFAULT_CREATURE_WIDTH = 55,
+            DEFAULT_CREATURE_HEIGHT = 55;
 
     protected int health;
     protected float speed;
@@ -28,14 +28,7 @@ public abstract class Creature extends Entity {
         return DEFAULT_CREATURE_WIDTH;
     }
 
-    public void move() {
-        xPosition += xMove;
-        if (xPosition >= GamePanel.getPanelWidth() - 55)
-            xPosition = GamePanel.getPanelWidth() - 55;
-        if (xPosition <= 5) {
-            xPosition = 5;
-        }
-    }
+    public abstract void move();
 
     public int getHealth() {
         return health;

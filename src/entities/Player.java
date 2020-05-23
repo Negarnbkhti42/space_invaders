@@ -44,5 +44,13 @@ public class Player extends Creature {
     }
 
 
-
+    @Override
+    public void move() {
+        xPosition += xMove;
+        if (xPosition >= GamePanel.getPanelWidth() - 55)
+            xPosition = GamePanel.getPanelWidth() - 55;
+        if (xPosition <= 5) {
+            xPosition = 5;
+        }
+    }
 }
