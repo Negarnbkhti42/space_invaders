@@ -10,7 +10,6 @@ public class GameState extends State {
 
     private final Player player;
     private AlienPack alienPack;
-    private Laser laser;
     private final int x = 0;
 
     public GameState(GamePanel game) {
@@ -18,14 +17,12 @@ public class GameState extends State {
         player = new Player(game, (GamePanel.getPanelWidth() - Creature.getDefaultCreatureWidth()) / 2,
                 GamePanel.getPanelHeight() - Creature.getDefaultCreatureHeight() - 30);
         alienPack=new AlienPack();
-        laser=Laser.getLaser(game);
     }
 
     @Override
     public void tick() {
         player.tick();
         alienPack.tick();
-        laser.tick();
     }
 
     @Override
@@ -33,6 +30,5 @@ public class GameState extends State {
         graphic.drawImage(Assets.background,0,0,GamePanel.getPanelWidth(),GamePanel.getPanelHeight(),null);
         player.render(graphic);
         alienPack.render(graphic);
-        laser.render(graphic);
     }
 }

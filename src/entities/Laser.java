@@ -11,20 +11,26 @@ public class Laser extends Item{
     private final GamePanel game;
     private static Laser laser=null;
     private boolean shot=false;
+    private Player spaceship;
 
-    public Laser(GamePanel game,float xPosition, float yPosition) {
+    public Laser(GamePanel game,float xPosition, float yPosition,Player spaceship) {
         super(xPosition, yPosition, DEFAULT_ITEM_WIDTH, DEFAULT_ITEM_HEIGHT);
         this.speed=15.0f;
         this.game=game;
         this.texture=Assets.laser;
+        this.spaceship=spaceship;
     }
 
     @Override
     public void tick() {
-        if (shot)
-        yPosition-=speed;
-        if (yPosition<=0)
-           shot=false;
+        if (shot) {
+            yPosition -= speed;
+            if (yPosition <= 0)
+                shot = false;
+        }else {
+          xPosition=  spaceship.getxPosition();
+          yPosition=spaceship.getyPosition();
+        }
     }
 
     @Override
@@ -34,16 +40,9 @@ public class Laser extends Item{
 
     }
 
-    public static Laser getLaser(GamePanel game) {
-        if (laser==null)return laser=new Laser(game,0,0);
-        return laser;
-    }
-
     public void shoot(float x,float y){
         if (!shot) {
             shot = true;
-            setxPosition(x);
-            setyPosition(y);
         }
     }
 }

@@ -16,13 +16,14 @@ public class Player extends Creature {
     public Player(GamePanel game, float xPosition, float yPosition) {
         super(xPosition, yPosition, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         this.game = game;
-        this.laser=Laser.getLaser(game);
+        this.laser=new Laser(game,xPosition,yPosition,this);
     }
 
     @Override
     public void tick() {
         getInput();
         move();
+        laser.tick();
     }
 
     public void getInput() {
@@ -40,6 +41,7 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
+        laser.render(g);
         g.drawImage(Assets.spaceShip, (int) xPosition, (int) yPosition, width, height, null);
     }
 
