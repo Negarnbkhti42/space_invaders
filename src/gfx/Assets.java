@@ -10,8 +10,13 @@ public class Assets {
     public static BufferedImage greenBullet, yellowBullet, purpleBullet, pinkBullet, blueBullet, redBullet;
     public static BufferedImage spaceShip = ImageLoader.loadImage("/res/galaga-galaxian-golden-age.png");
     public static SpriteSheet alienSheet = new SpriteSheet(ImageLoader.loadImage("/res/space_invader_sprites2.png"));
-    public static BufferedImage laser=ImageLoader.loadImage("/res/SpaceInvadersLaserDepiction.png");
-    public static BufferedImage background=ImageLoader.loadImage("/res/Tileable_Background_Images.jpg");
+    public static BufferedImage laser;
+    public static BufferedImage background;
+    public static BufferedImage menuBackground;
+    public static BufferedImage logo;
+    public static BufferedImage greenAlien;
+    public static BufferedImage[] startButton;
+    public static BufferedImage[] highscoreButton;
 
     private static HashMap<String,BufferedImage[]> aliens=new HashMap<>();
     private static HashMap<String,BufferedImage> bullets=new HashMap<>();
@@ -20,6 +25,7 @@ public class Assets {
     public static void init() {
         loadAliens();
         loadBullets();
+        loadMenu();
     }
 
     private static void loadAliens() {
@@ -45,6 +51,22 @@ public class Assets {
         pinkBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 3, WIDTH, HEIGHT);
         blueBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 4, WIDTH, HEIGHT);
         redBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 5, WIDTH, HEIGHT);
+        laser=ImageLoader.loadImage("/res/SpaceInvadersLaserDepiction.png");
+    }
+
+    private static void loadMenu(){
+        background=ImageLoader.loadImage("/res/Tileable_Background_Images.jpg");
+        menuBackground=ImageLoader.loadImage("/menu_Background.png");
+        logo=ImageLoader.loadImage("/space-invaders-logo.png");
+        greenAlien=ImageLoader.loadImage("/res/green_alien.png");
+        startButton=new BufferedImage[]{
+                ImageLoader.loadImage("/res/start-game.png"),
+                ImageLoader.loadImage("/res/start-game-hover.png")
+        };
+        highscoreButton=new BufferedImage[]{
+                ImageLoader.loadImage("/highscores.png"),
+                ImageLoader.loadImage("/highscores-hover.png")
+        };
     }
 
     public static HashMap<String, BufferedImage[]> getAliensTexture() {

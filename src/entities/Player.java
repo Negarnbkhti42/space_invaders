@@ -27,15 +27,15 @@ public class Player extends Creature {
 
     public void getInput() {
         xMove = yMove = 0;
-        if (handler.getGame().getKeyManager().right) {
+        if (handler.getKeyManager().right) {
             xMove = speed;
         }
-        if (handler.getGame().getKeyManager().left) {
+        if (handler.getKeyManager().left) {
             xMove = -speed;
         }
-        if (handler.getGame().getKeyManager().space) {
+        if (handler.getKeyManager().space) {
             if (!Laser.isShot())
-                handler.getState().getEntityManager().addEntity(new Laser(handler,xPosition,yPosition));
+                handler.getState().getEntityManager().addEntity(new Laser(handler,xPosition+10,yPosition));
         }
     }
 

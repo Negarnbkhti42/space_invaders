@@ -1,5 +1,6 @@
 package frame;
 
+import input.KeyManager;
 import state.State;
 
 public class Handler {
@@ -24,5 +25,10 @@ public class Handler {
 
     public void setState(State state) {
         this.state = state;
+        State.setState(state);
+    }
+
+    public KeyManager getKeyManager(){
+        return game.getKeyManager();
     }
 }

@@ -42,8 +42,8 @@ public class GamePanel implements Runnable {
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(gameState);
-        handler.setState(gameState);
+        //State.setState(menuState);
+        handler.setState(menuState);
 
 
     }
