@@ -1,5 +1,6 @@
 package state;
 
+import entities.EntityManager;
 import frame.GamePanel;
 import frame.Handler;
 
@@ -9,6 +10,8 @@ public abstract class State {
 
     private static State currentState = null;
     protected Handler handler;
+    protected EntityManager manager;
+
 
     public State(Handler handler) {
         this.handler = handler;
@@ -20,6 +23,10 @@ public abstract class State {
 
     public static State getCurrentState() {
         return currentState;
+    }
+
+    public EntityManager getEntityManager() {
+        return manager;
     }
 
     public abstract void tick();

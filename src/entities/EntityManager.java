@@ -9,16 +9,13 @@ import java.util.ArrayList;
 public class EntityManager {
     private Handler handler;
     private Player player;
-    private AlienPack alienPack;
     private ArrayList<Entity> entities;
 
     public EntityManager(Handler handler,Player player){
         this.handler=handler;
         this.player=player;
-        this.alienPack=new AlienPack(handler);
         entities=new ArrayList<Entity>();
         entities.add(player);
-        entities.add(alienPack);
     }
 
     public void tick(){
@@ -39,8 +36,8 @@ public class EntityManager {
         entities.remove(e);
     }
 
-    public AlienPack getAlienPack() {
-        return alienPack;
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 
     public Handler getHandler() {

@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 public class Laser extends Item{
 
+    private static boolean shot;
 
     public Laser(Handler handler,float xPosition, float yPosition) {
         super(handler,xPosition, yPosition, DEFAULT_ITEM_WIDTH, DEFAULT_ITEM_HEIGHT);
@@ -18,15 +19,22 @@ public class Laser extends Item{
         this.texture=Assets.laser;
         this.xPosition= xPosition;
         this.yPosition=yPosition;
-        boundary.x=53;
-        boundary.y=4;
-        boundary.width=23;
-        boundary.height=117;
+        boundary.x=14;
+        boundary.y=-4;
+        boundary.width=(27*DEFAULT_ITEM_WIDTH)/130;
+        boundary.height=(117*DEFAULT_ITEM_HEIGHT)/130;
+        shot=true;
     }
+
+
 
     @Override
     public void tick() {
         yPosition-=speed;
+        if (checkCollision(0, yMove)||(yPosition)==0) {
+            shot=false;
+            handler.getState().getEntityManager().removeEntity(this);
+        }
     }
 
     @Override
@@ -35,5 +43,20 @@ public class Laser extends Item{
 
     }
 
+    @Override
+    public boolean checkCollision(float xOffset, float yOffset) {
+        for (Entity e:handler.getState().getEntityManager().getEntities()){
+            if (e instanceof Alien){
+                if (e.getBounds(0,0).intersects(getBounds(xOffset,yOffset))){
+                    //todo:kill alien
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    public static boolean isShot(){
+        return shot;
+    }
 }

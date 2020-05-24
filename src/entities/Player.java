@@ -1,5 +1,6 @@
 package entities;
 
+import com.sun.org.apache.bcel.internal.generic.LADD;
 import frame.GamePanel;
 import frame.Handler;
 import gfx.Assets;
@@ -12,10 +13,10 @@ public class Player extends Creature {
     public Player(Handler handler, float xPosition, float yPosition) {
         super(handler, xPosition, yPosition, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         this.handler = handler;
-        boundary.x = 17;
-        boundary.y = 13;
-        boundary.width = 94;
-        boundary.height = 116;
+        boundary.x = 8;
+        boundary.y = 10;
+        boundary.width = (95*DEFAULT_CREATURE_WIDTH)/130;
+        boundary.height = (116*DEFAULT_CREATURE_HEIGHT)/130;
     }
 
     @Override
@@ -33,13 +34,15 @@ public class Player extends Creature {
             xMove = -speed;
         }
         if (handler.getGame().getKeyManager().space) {
-            //todo: shoot lasers
+            if (!Laser.isShot())
+                handler.getState().getEntityManager().addEntity(new Laser(handler,xPosition,yPosition));
         }
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.spaceShip, (int) xPosition, (int) yPosition, width, height, null);
+
     }
 
 

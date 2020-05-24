@@ -10,12 +10,13 @@ import java.awt.*;
 public class GameState extends State {
 
     private final int x = 0;
-    private EntityManager manager;
 
     public GameState(Handler handler) {
         super(handler);
         manager=new EntityManager(handler,new Player(handler,GamePanel.getPanelWidth()/2,
-                GamePanel.getPanelHeight()-Creature.getDefaultCreatureHeight()));
+                GamePanel.getPanelHeight()-Creature.getDefaultCreatureHeight()-10));
+       for (Alien alien:(new AlienPack(handler)).getPack())
+        manager.addEntity(alien);
     }
 
     @Override

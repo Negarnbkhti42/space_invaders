@@ -28,7 +28,15 @@ public abstract class Entity {
 
     public abstract void render(Graphics g);
 
-
+    public boolean checkCollision(float xOffset,float yOffset){
+        for (Entity e:handler.getState().getEntityManager().getEntities()){
+            if (e.equals(this))
+                continue;
+            if (e.getBounds(0,0).intersects(getBounds(xOffset,yOffset)))
+                return true;
+        }
+        return false;
+    }
 
     public Rectangle getBounds(float xOffset,float yOffset){
         return new Rectangle(((int)(xPosition+boundary.x+xOffset)),((int)(yPosition+boundary.y+yOffset)),boundary.width,boundary.height);
