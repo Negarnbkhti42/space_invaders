@@ -29,7 +29,7 @@ public abstract class Entity {
     public abstract void render(Graphics g);
 
     public boolean checkCollision(float xOffset,float yOffset){
-        for (Entity e:handler.getState().getEntityManager().getEntities()){
+        for (Entity e:handler.getGameState().getEntityManager().getEntities()){
             if (e.equals(this))
                 continue;
             if (e.getBounds(0,0).intersects(getBounds(xOffset,yOffset)))

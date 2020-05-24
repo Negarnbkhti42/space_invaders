@@ -35,7 +35,7 @@ public class Player extends Creature {
         }
         if (handler.getKeyManager().space) {
             if (!Laser.isShot())
-                handler.getState().getEntityManager().addEntity(new Laser(handler,xPosition+10,yPosition));
+                handler.getGameState().getEntityManager().addEntity(new Laser(handler,xPosition+15,yPosition));
         }
     }
 

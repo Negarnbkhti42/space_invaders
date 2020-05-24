@@ -21,8 +21,8 @@ public class GamePanel implements Runnable {
     private BufferStrategy Bstrategy;
     private Graphics graphics;
 
-    public State gameState;
-    public State menuState;
+    private State gameState;
+    private State menuState;
 
     private final KeyManager keyManager = new KeyManager();
     private final MouseManager mouseManager=new MouseManager();
@@ -49,8 +49,7 @@ public class GamePanel implements Runnable {
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        //State.setState(menuState);
-        handler.setState(menuState);
+        State.setState(menuState);
 
 
     }
@@ -125,5 +124,13 @@ public class GamePanel implements Runnable {
 
     public MouseManager getMouseManager() {
         return mouseManager;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
+
+    public State getMenuState() {
+        return menuState;
     }
 }

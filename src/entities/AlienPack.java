@@ -18,17 +18,17 @@ public class AlienPack  {
 
     public AlienPack(Handler handler){
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),20,"blue"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50,"blue"));
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),Creature.getDefaultCreatureHeight()+20,"purple"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight(),"purple"));
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),20+Creature.getDefaultCreatureHeight()*2,"red"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight()*2,"red"));
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),20+Creature.getDefaultCreatureHeight()*3,"lightBlue"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight()*3,"lightBlue"));
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),20+Creature.getDefaultCreatureHeight()*4,"yellow"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight()*4,"yellow"));
         for (int i=0;i<11;i++)
-            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),20+Creature.getDefaultCreatureHeight()*5,"green"));
+            pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight()*5,"green"));
         lastTime=System.currentTimeMillis();
     }
 

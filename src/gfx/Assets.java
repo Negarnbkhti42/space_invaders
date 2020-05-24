@@ -7,10 +7,9 @@ public class Assets {
 
 
     private static final int WIDTH = 130, HEIGHT = 130;
-    public static BufferedImage greenBullet, yellowBullet, purpleBullet, pinkBullet, blueBullet, redBullet;
     public static BufferedImage spaceShip = ImageLoader.loadImage("/res/galaga-galaxian-golden-age.png");
     public static SpriteSheet alienSheet = new SpriteSheet(ImageLoader.loadImage("/res/space_invader_sprites2.png"));
-    public static BufferedImage laser;
+    public static BufferedImage laser=ImageLoader.loadImage("/res/SpaceInvadersLaserDepiction.png");
     public static BufferedImage background;
     public static BufferedImage menuBackground;
     public static BufferedImage logo;
@@ -24,7 +23,6 @@ public class Assets {
 
     public static void init() {
         loadAliens();
-        loadBullets();
         loadMenu();
     }
 
@@ -32,27 +30,42 @@ public class Assets {
         aliens.put("green",
                 new BufferedImage[]{alienSheet.crop(0, 0, WIDTH, HEIGHT),
                         alienSheet.crop(WIDTH, 0, WIDTH, HEIGHT)});
+        bullets.put("green",alienSheet.crop(WIDTH*3,0,WIDTH,HEIGHT));
+        destroyed.put("green",alienSheet.crop(WIDTH*2,0,WIDTH,HEIGHT));
+
         aliens.put("yellow",new BufferedImage[]{alienSheet.crop(0, HEIGHT, WIDTH, HEIGHT),
                 alienSheet.crop(WIDTH, HEIGHT, WIDTH, HEIGHT)});
+        bullets.put("yellow",alienSheet.crop(WIDTH*3,HEIGHT,WIDTH,HEIGHT));
+        destroyed.put("yellow",alienSheet.crop(WIDTH*2,HEIGHT,WIDTH,HEIGHT));
+
+
         aliens.put("purple",new BufferedImage[]{alienSheet.crop(0, HEIGHT * 2, WIDTH, HEIGHT),
                 alienSheet.crop(WIDTH, HEIGHT * 2, WIDTH, HEIGHT)});
+        bullets.put("purple",alienSheet.crop(WIDTH*3,HEIGHT*2,WIDTH,HEIGHT));
+        destroyed.put("purple",alienSheet.crop(WIDTH*2,HEIGHT*2,WIDTH,HEIGHT));
+
+
         aliens.put("lightBlue",new BufferedImage[]{alienSheet.crop(0, HEIGHT * 3, WIDTH, HEIGHT),
                 alienSheet.crop(WIDTH, HEIGHT * 3, WIDTH, HEIGHT)});
+        bullets.put("lightBlue",alienSheet.crop(WIDTH*3,HEIGHT*3,WIDTH,HEIGHT));
+        destroyed.put("lightBlue",alienSheet.crop(WIDTH*2,HEIGHT*3,WIDTH,HEIGHT));
+
+
         aliens.put("blue",new BufferedImage[]{alienSheet.crop(0, HEIGHT * 4, WIDTH, HEIGHT),
                 alienSheet.crop(WIDTH, HEIGHT * 4, WIDTH, HEIGHT)});
+        bullets.put("blue",alienSheet.crop(WIDTH*3,HEIGHT*4,WIDTH,HEIGHT));
+        destroyed.put("blue",alienSheet.crop(WIDTH*2,HEIGHT*4,WIDTH,HEIGHT));
+
+
         aliens.put("red", new BufferedImage[]{alienSheet.crop(0, HEIGHT * 5, WIDTH, HEIGHT),
                 alienSheet.crop(WIDTH, HEIGHT * 5, WIDTH, HEIGHT)});
+        bullets.put("red",alienSheet.crop(WIDTH*3,HEIGHT*5,WIDTH,HEIGHT));
+        destroyed.put("red",alienSheet.crop(WIDTH*2,HEIGHT*5,WIDTH,HEIGHT));
+
+
+
     }
 
-    private static void loadBullets() {
-        greenBullet = alienSheet.crop(WIDTH * 3, 0, WIDTH, HEIGHT);
-        yellowBullet = alienSheet.crop(WIDTH * 3, HEIGHT, WIDTH, HEIGHT);
-        purpleBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 2, WIDTH, HEIGHT);
-        pinkBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 3, WIDTH, HEIGHT);
-        blueBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 4, WIDTH, HEIGHT);
-        redBullet = alienSheet.crop(WIDTH * 3, HEIGHT * 5, WIDTH, HEIGHT);
-        laser=ImageLoader.loadImage("/res/SpaceInvadersLaserDepiction.png");
-    }
 
     private static void loadMenu(){
         background=ImageLoader.loadImage("/res/Tileable_Background_Images.jpg");
@@ -71,5 +84,13 @@ public class Assets {
 
     public static HashMap<String, BufferedImage[]> getAliensTexture() {
         return aliens;
+    }
+
+    public static HashMap<String, BufferedImage> getDestroyed() {
+        return destroyed;
+    }
+
+    public static HashMap<String, BufferedImage> getBullets() {
+        return bullets;
     }
 }

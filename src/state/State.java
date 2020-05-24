@@ -10,7 +10,7 @@ public abstract class State {
 
     private static State currentState = null;
     protected Handler handler;
-    protected EntityManager manager;
+
 
 
     public State(Handler handler) {
@@ -25,9 +25,6 @@ public abstract class State {
         return currentState;
     }
 
-    public EntityManager getEntityManager() {
-        return manager;
-    }
 
     public abstract void tick();
 

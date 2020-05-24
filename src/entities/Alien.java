@@ -6,6 +6,7 @@ import gfx.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Alien extends Creature {
 
@@ -13,13 +14,15 @@ public class Alien extends Creature {
     private String color;
     private float initialX;
     private long timer,lastTime;
+    private boolean killed=false;
+    private Random random=new Random();
 
 
     public Alien(Handler handler,float xPosition, float yPosition, String color) {
         super(handler,xPosition, yPosition, Creature.getDefaultCreatureWidth(), Creature.DEFAULT_CREATURE_HEIGHT);
         this.color=color;
-        movement=new Animation(250,Assets.getAliensTexture().get(color));
-        this.speed=10;
+        movement=new Animation(700,Assets.getAliensTexture().get(color));
+        this.speed=15;
         this.initialX=xPosition;
         boundary.x=5;
         boundary.y=10;
@@ -32,7 +35,7 @@ public class Alien extends Creature {
     public void tick() {
         timer+=System.currentTimeMillis()-lastTime;
         lastTime=System.currentTimeMillis();
-        if (timer>=250) {
+        if (timer>=700) {
             timer = 0;
             movement.tick();
             move();
@@ -41,6 +44,10 @@ public class Alien extends Creature {
 
     @Override
     public void render(Graphics g) {
+        if (killed) {
+            g.drawImage(Assets.getDestroyed().get(color), (int) xPosition, (int) yPosition, width, height, null);
+            handler.getGameState().getEntityManager().removeEntity(this);
+        } else
         g.drawImage(movement.getCurrentFrame(), (int) xPosition, (int) yPosition, width, height, null);
     }
 
@@ -48,9 +55,14 @@ public class Alien extends Creature {
     public void move() {
         xPosition+=speed;
         if (((xPosition-initialX)>=AlienPack.getAlienLimit())||((initialX-xPosition)>=AlienPack.getAlienLimit())){
-            yPosition+=15;
+            yPosition+=35;
             speed*=-1;
+            xPosition+=speed;
         }
+    }
+
+    public void kill(){
+        killed=true;
     }
 
 }

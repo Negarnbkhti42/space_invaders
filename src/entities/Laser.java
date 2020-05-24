@@ -15,7 +15,7 @@ public class Laser extends Item{
 
     public Laser(Handler handler,float xPosition, float yPosition) {
         super(handler,xPosition, yPosition, DEFAULT_ITEM_WIDTH, DEFAULT_ITEM_HEIGHT);
-        this.speed=15.0f;
+        this.speed=20.0f;
         this.texture=Assets.laser;
         this.xPosition= xPosition;
         this.yPosition=yPosition;
@@ -31,9 +31,9 @@ public class Laser extends Item{
     @Override
     public void tick() {
         yPosition-=speed;
-        if (checkCollision(0, yMove)||(yPosition)==0) {
+        if (checkCollision(0, yMove)||(yPosition)<=0) {
             shot=false;
-            handler.getState().getEntityManager().removeEntity(this);
+            handler.getGameState().getEntityManager().removeEntity(this);
         }
     }
 
@@ -45,10 +45,10 @@ public class Laser extends Item{
 
     @Override
     public boolean checkCollision(float xOffset, float yOffset) {
-        for (Entity e:handler.getState().getEntityManager().getEntities()){
+        for (Entity e:handler.getGameState().getEntityManager().getEntities()){
             if (e instanceof Alien){
                 if (e.getBounds(0,0).intersects(getBounds(xOffset,yOffset))){
-                    //todo:kill alien
+                    ((Alien) e).kill();
                     return true;
                 }
             }

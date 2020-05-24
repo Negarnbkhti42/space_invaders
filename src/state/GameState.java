@@ -8,6 +8,7 @@ import gfx.Assets;
 import java.awt.*;
 
 public class GameState extends State {
+    private EntityManager manager;
 
     private final int x = 0;
 
@@ -28,6 +29,11 @@ public class GameState extends State {
     public void render(Graphics graphic) {
         graphic.drawImage(Assets.background,0,0,GamePanel.getPanelWidth(),GamePanel.getPanelHeight(),null);
         manager.render(graphic);
+    }
+
+
+    public EntityManager getEntityManager() {
+        return manager;
     }
 
 }
