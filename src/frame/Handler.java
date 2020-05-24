@@ -1,6 +1,7 @@
 package frame;
 
 import input.KeyManager;
+import input.MouseManager;
 import state.State;
 
 public class Handler {
@@ -30,5 +31,9 @@ public class Handler {
 
     public KeyManager getKeyManager(){
         return game.getKeyManager();
+    }
+
+    public MouseManager getMouseManager(){
+        return game.getMouseManager();
     }
 }

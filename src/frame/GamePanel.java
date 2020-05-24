@@ -2,11 +2,13 @@ package frame;
 
 import gfx.Assets;
 import input.KeyManager;
+import input.MouseManager;
 import state.GameState;
 import state.MenuState;
 import state.State;
 
 import java.awt.*;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 
 public class GamePanel implements Runnable {
@@ -19,10 +21,11 @@ public class GamePanel implements Runnable {
     private BufferStrategy Bstrategy;
     private Graphics graphics;
 
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
 
     private final KeyManager keyManager = new KeyManager();
+    private final MouseManager mouseManager=new MouseManager();
     private Handler handler;
 
     public static int getPanelWidth() {
@@ -36,6 +39,10 @@ public class GamePanel implements Runnable {
     private void init() {
         display = new Display(TITLE, PANEL_WIDTH, PANEL_HEIGHT);
         display.getFrame().addKeyListener(keyManager);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
         handler=new Handler(this);
@@ -114,5 +121,9 @@ public class GamePanel implements Runnable {
 
     public KeyManager getKeyManager() {
         return keyManager;
+    }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
     }
 }
