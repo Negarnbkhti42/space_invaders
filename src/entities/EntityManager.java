@@ -19,13 +19,19 @@ public class EntityManager {
     }
 
     public void tick(){
-        for (int i=0;i<entities.size();i++)
-            entities.get(i).tick();
+        for (int i=0;i<entities.size();i++) {
+            Entity e=entities.get(i);
+            e.tick();
+            if (e.getHealth()==0)
+                entities.remove(e);
+        }
     }
 
     public void render(Graphics g){
-        for (int i=0;i<entities.size();i++)
-            entities.get(i).render(g);
+        for (int i=0;i<entities.size();i++) {
+            Entity e=entities.get(i);
+            e.render(g);
+        }
     }
 
     public void addEntity(Entity e){

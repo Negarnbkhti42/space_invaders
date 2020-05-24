@@ -1,9 +1,11 @@
 package state;
 
+import com.sun.scenario.effect.impl.prism.ps.PPSRenderer;
 import entities.*;
 import frame.GamePanel;
 import frame.Handler;
 import gfx.Assets;
+import sun.dc.pr.PRError;
 
 import java.awt.*;
 
@@ -11,6 +13,7 @@ public class GameState extends State {
     private EntityManager manager;
 
     private final int x = 0;
+    private boolean paused=false;
 
     public GameState(Handler handler) {
         super(handler);
@@ -22,6 +25,8 @@ public class GameState extends State {
 
     @Override
     public void tick() {
+        getInput();
+        if (!paused)
         manager.tick();
     }
 
@@ -31,9 +36,22 @@ public class GameState extends State {
         manager.render(graphic);
     }
 
+    public void getInput(){
+        if (handler.getKeyManager().esc){
+            setPaused(!paused);
+        }
+    }
+
 
     public EntityManager getEntityManager() {
         return manager;
     }
 
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
 }

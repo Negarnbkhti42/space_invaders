@@ -13,6 +13,8 @@ public abstract class Entity {
     protected BufferedImage texture;
     protected Rectangle boundary=new Rectangle();
     protected Handler handler;
+    protected int health;
+    protected float speed;
 
     protected float xMove = 0, yMove = 0;
 
@@ -80,5 +82,9 @@ public abstract class Entity {
 
     public float getyMove() {
         return yMove;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

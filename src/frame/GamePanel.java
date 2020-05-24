@@ -13,7 +13,7 @@ import java.awt.image.BufferStrategy;
 
 public class GamePanel implements Runnable {
     private static final String TITLE = "Space invaders";
-    private static final int PANEL_WIDTH = 1000, PANEL_HEIGHT = 800;
+    private static final int PANEL_WIDTH = 1000, PANEL_HEIGHT = 750;
     private Display display;
     private Thread thread;
     private boolean running = false;

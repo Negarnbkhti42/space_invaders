@@ -1,6 +1,5 @@
 package entities;
 
-import com.sun.org.apache.bcel.internal.generic.LADD;
 import frame.GamePanel;
 import frame.Handler;
 import gfx.Assets;
@@ -15,8 +14,8 @@ public class Player extends Creature {
         this.handler = handler;
         boundary.x = 8;
         boundary.y = 10;
-        boundary.width = (95*DEFAULT_CREATURE_WIDTH)/130;
-        boundary.height = (116*DEFAULT_CREATURE_HEIGHT)/130;
+        boundary.width = (95 * DEFAULT_CREATURE_WIDTH) / 130;
+        boundary.height = (116 * DEFAULT_CREATURE_HEIGHT) / 130;
     }
 
     @Override
@@ -35,7 +34,7 @@ public class Player extends Creature {
         }
         if (handler.getKeyManager().space) {
             if (!Laser.isShot())
-                handler.getGameState().getEntityManager().addEntity(new Laser(handler,xPosition+15,yPosition));
+                handler.getGameState().getEntityManager().addEntity(new Laser(handler, xPosition + 15, yPosition));
         }
     }
 

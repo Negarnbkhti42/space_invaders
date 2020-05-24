@@ -19,6 +19,7 @@ public class Laser extends Item{
         this.texture=Assets.laser;
         this.xPosition= xPosition;
         this.yPosition=yPosition;
+        health=1;
         boundary.x=14;
         boundary.y=-4;
         boundary.width=(27*DEFAULT_ITEM_WIDTH)/130;
@@ -31,9 +32,9 @@ public class Laser extends Item{
     @Override
     public void tick() {
         yPosition-=speed;
-        if (checkCollision(0, yMove)||(yPosition)<=0) {
+        if (checkCollision(0, 0)||(yPosition)<=0) {
             shot=false;
-            handler.getGameState().getEntityManager().removeEntity(this);
+            health=0;
         }
     }
 
