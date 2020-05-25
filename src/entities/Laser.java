@@ -49,7 +49,7 @@ public class Laser extends Item{
         for (Entity e:handler.getGameState().getEntityManager().getEntities()){
             if (e instanceof Alien){
                 if (e.getBounds(0,0).intersects(getBounds(xOffset,yOffset))){
-                    ((Alien) e).kill();
+                    handler.getGameState().getPack().killAlien((Alien)e);
                     return true;
                 }
             }

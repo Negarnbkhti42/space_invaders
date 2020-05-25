@@ -14,9 +14,11 @@ public class AlienPack  {
     private int speed=250;
     private long lastTime,timer=0;
     private static int alienLimit= (GamePanel.getPanelWidth()-(Creature.getDefaultCreatureWidth()*11))/2;
+    private Handler handler;
 
 
     public AlienPack(Handler handler){
+        this.handler=handler;
         for (int i=0;i<11;i++)
             pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50,"blue"));
         for (int i=0;i<11;i++)
@@ -30,6 +32,15 @@ public class AlienPack  {
         for (int i=0;i<11;i++)
             pack.add(new Alien(handler,alienLimit+(i*Creature.getDefaultCreatureWidth()),50+Creature.getDefaultCreatureHeight()*5,"green"));
         lastTime=System.currentTimeMillis();
+    }
+
+    public void killAlien(Alien alien){
+        alien.kill();
+        handler.getGameState().getPlayer().increasePoints();
+        pack.remove(alien);
+        if (pack.isEmpty()){
+            handler.getGameState().stateWin();
+        }
     }
 
 

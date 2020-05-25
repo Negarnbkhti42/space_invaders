@@ -64,6 +64,7 @@ public class Alien extends Creature {
         }
     }
 
+
     public void kill(){
         killed=true;
         deathTime=System.currentTimeMillis();

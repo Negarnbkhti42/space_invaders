@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class Player extends Creature {
 
+    private int points=0;
+
 
     public Player(Handler handler, float xPosition, float yPosition) {
         super(handler, xPosition, yPosition, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -55,4 +57,11 @@ public class Player extends Creature {
         }
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void increasePoints(){
+        points+=1;
+    }
 }
