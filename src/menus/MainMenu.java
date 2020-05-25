@@ -8,10 +8,10 @@ import ui.ClickListener;
 import ui.UIImageButton;
 import ui.UIManager;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class MainMenu extends Menu{
-
 
     public MainMenu(Handler handler) {
         super(handler);
@@ -40,4 +40,12 @@ public class MainMenu extends Menu{
             }));
         }
 
+    @Override
+    public void render(Graphics g) {
+
+        super.render(g);
+        g.setColor(Color.red);
+        g.setFont(Assets.defaultFont);
+        g.drawString("welcome",300,390);
+    }
 }

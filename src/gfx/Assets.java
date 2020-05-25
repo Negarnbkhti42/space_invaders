@@ -1,6 +1,9 @@
 package gfx;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Assets {
@@ -21,9 +24,12 @@ public class Assets {
     private static HashMap<String,BufferedImage> bullets=new HashMap<>();
     private static HashMap<String,BufferedImage> destroyed=new HashMap<>();
 
+    public static Font defaultFont;
+
     public static void init() {
         loadAliens();
         loadMenu();
+        //loadFont();
     }
 
     private static void loadAliens() {
@@ -66,7 +72,6 @@ public class Assets {
 
     }
 
-
     private static void loadMenu(){
         background=ImageLoader.loadImage("/res/Tileable_Background_Images.jpg");
         menuBackground=ImageLoader.loadImage("/menu_Background.png");
@@ -80,6 +85,15 @@ public class Assets {
                 ImageLoader.loadImage("/highscores.png"),
                 ImageLoader.loadImage("/highscores-hover.png")
         };
+    }
+
+    private static void loadFont(){
+        try {
+            defaultFont = Font.createFont(Font.TRUETYPE_FONT, new File("/res/ARCADECLASSIC.TTF")).deriveFont(Font.PLAIN,300);
+        }catch (FontFormatException | IOException e){
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     public static HashMap<String, BufferedImage[]> getAliensTexture() {

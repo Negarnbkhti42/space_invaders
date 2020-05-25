@@ -4,6 +4,7 @@ import frame.GamePanel;
 import frame.Handler;
 import gfx.Assets;
 import gfx.ImageLoader;
+import menus.LoginMenu;
 import menus.MainMenu;
 import menus.Menu;
 import ui.ClickListener;
@@ -28,6 +29,7 @@ public class MenuState extends State {
 
     public void loadMenus(){
         mainMenu=new MainMenu(handler);
+        highScoreMenu=new LoginMenu(handler);
     }
 
     @Override

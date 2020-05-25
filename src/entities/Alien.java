@@ -41,6 +41,9 @@ public class Alien extends Creature {
             timer = 0;
             movement.tick();
             move();
+            if (random.nextBoolean()){
+                //handler.getGameState().getEntityManager().addEntity(new Bullet(handler,xPosition+17,yPosition,color));
+            }
         }
     }
 

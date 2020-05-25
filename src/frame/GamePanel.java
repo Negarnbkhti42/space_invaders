@@ -7,14 +7,15 @@ import state.GameState;
 import state.MenuState;
 import state.State;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 
-public class GamePanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable{
     private static final String TITLE = "Space invaders";
     private static final int PANEL_WIDTH = 1000, PANEL_HEIGHT = 750;
-    private Display display;
+    //private Display display;
     private Thread thread;
     private boolean running = false;
 
@@ -37,15 +38,18 @@ public class GamePanel implements Runnable {
     }
 
     private void init() {
-        display = new Display(TITLE, PANEL_WIDTH, PANEL_HEIGHT);
-        display.getFrame().addKeyListener(keyManager);
-        display.getFrame().addMouseListener(mouseManager);
-        display.getFrame().addMouseMotionListener(mouseManager);
-        display.getCanvas().addMouseListener(mouseManager);
-        display.getCanvas().addMouseMotionListener(mouseManager);
+//        display = new Display(TITLE, PANEL_WIDTH, PANEL_HEIGHT);
+//        display.getFrame().addKeyListener(keyManager);
+//        display.getFrame().addMouseListener(mouseManager);
+//        display.getFrame().addMouseMotionListener(mouseManager);
+        this.addMouseListener(mouseManager);
+        this.addMouseMotionListener(mouseManager);
+        //display.getCanvas().addMouseListener(mouseManager);
+       // display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
         handler=new Handler(this);
+
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
@@ -61,13 +65,22 @@ public class GamePanel implements Runnable {
         }
     }
 
-    private void render() {
-        Bstrategy = display.getCanvas().getBufferStrategy();
-        if (Bstrategy == null) {
-            display.getCanvas().createBufferStrategy(3);
-            return;
+    @Override
+    public void paint(Graphics g) {
+        super.paintComponents(g);
+        g.clearRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
+        if (State.getCurrentState() != null) {
+            State.getCurrentState().render(g);
         }
-        graphics = Bstrategy.getDrawGraphics();
+    }
+
+    private void render() {
+//        Bstrategy = display.getCanvas().getBufferStrategy();
+//        if (Bstrategy == null) {
+//            display.getCanvas().createBufferStrategy(3);
+//            return;
+//        }
+//        graphics = Bstrategy.getDrawGraphics();
         graphics.clearRect(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         if (State.getCurrentState() != null) {
             State.getCurrentState().render(graphics);
@@ -92,8 +105,13 @@ public class GamePanel implements Runnable {
 
             if (delta >= 1) {
                 tick();
-                render();
+                repaint();
                 delta--;
+            }
+            try {
+                Thread.sleep(Math.max(0,System.currentTimeMillis()));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
         stop();
@@ -133,4 +151,8 @@ public class GamePanel implements Runnable {
     public State getMenuState() {
         return menuState;
     }
+
+//    public Display getDisplay() {
+//        return display;
+//    }
 }
